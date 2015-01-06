@@ -1,0 +1,337 @@
+\documentclass[a4paper,fleqn,13pt]{article}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage{ifpdf}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{appendix}
+\DeclareGraphicsExtensions{.png,.pdf,.jpg}
+\textwidth 6.0in
+\topmargin 0.0in
+
+
+
+\begin{document}
+\title{	Belt Velocity Initialization}
+\author{\bf Zhan Wang}
+\date{ 14 September 2012}
+\maketitle
+\pagestyle{fancy}
+\rhead{}
+\lhead{}
+\oddsidemargin 0in
+\evensidemargin 0in
+\tableofcontents
+
+\newpage
+\flushleft
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  1 
+\section{Input situation: $\omega_I$, $M_O$, $F_{C_O}$}
+
+\subsection{Condition}
+Input parameters:\ $\omega_I$, $M_O$, $F_{C_O}$ \\
+Unknowns:\ $\omega_O$, $v_0$
+
+\subsection{Simplification}
+From 2.216 we can get
+\begin{equation}  \label{2.216.1}
+ \left(L_{O_{in}} - K \right)e^{\mu^* \Phi_O} = \frac{M_O}{r_O} + \left(L_{O_{in}} - K \right) 
+\end{equation}
+For equation 2.214, we can substitute $\left(L_{O_{in}} - K \right)e^{\mu^* \Phi_O}$ by (\ref{2.216.1}) and then insert equation 2.218. So we get 
+\begin{equation}  \label{Eq:equation1_S1}
+ r_I \omega_I = \frac{v_0 M_O}{E A r_O} + r_O \omega_O
+\end{equation}
+
+From 2.216 we also can get 
+\begin{equation}  \label{2.216.2}
+ \left(L_{O_{in}} - K \right) \left(e^{\mu^* \Phi_O}-1 \right) = \frac{M_O}{r_O} 
+\end{equation}
+
+From 2.218 and the formula of K we can get 
+\begin{equation}  \label{2.218}
+ \frac{ \left(L_{O_{in}} - K \right) }{EA} = \frac{r_O \omega_O}{v_0}  - \frac{EA}{EA-m^{*}{v_0}^2}
+\end{equation}
+
+For equation 2.217, we can substitute $\left(L_{O_{in}} - K \right) \left(e^{\mu^* \Phi_O}-1 \right) $ by (\ref{2.216.2}) 
+and $ \left(L_{O_{in}} - K \right) / EA $ by (\ref{2.218}), then insert 2.218. So we get
+
+\begin{equation}  \label{Eq:FCO_S1}
+  2F_{C_O} \tan (\delta_0)  = \left(EA-m^*{v_0}^2 \right)\left[2\varphi \left(\frac{r_O\omega_O}{v_0}-1 \right) + \frac{M_O}{\mu^*r_OEA} - \left(\frac{r_O\omega_O}{v_0} - \frac{EA}{EA-m^*{v_0}^2}\right)\Phi_O\right]  - 2m^*{v_0}^2\varphi
+\end{equation}
+
+Then we can solve equations (\ref{Eq:equation1_S1}) and (\ref{Eq:FCO_S1}) with unknowns $\omega_O$ and $v_0$ with the starting vaulue provided by 2.219 and 2.220.
+
+\subsection{How to calculate $v_0$ when $M_O = 0$}
+Condition: $\Phi_I=\Phi_O$, $F_{C_O} \not = 0$, $L_{O_{in}} \neq 0$  \\
+Insert $\Phi_O = 0$ and 2.219 in to 2.217 and simplify it, we can get
+\begin{equation} \label{Eq:v0_1}
+ r_I\omega_I\varphi m^*{v_0}^2+(F_{C_O}\tan(\delta_0)+EA \varphi )v_0 -EA r_I\omega_I\varphi  = 0
+\end{equation}
+And as $v_0 \geq 0$, solving the quadratic equation in $v_0$ (\ref{Eq:v0_1}),we can get $v_0$ descripted in 2.220.
+
+\newpage
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  2
+\section{Input situation: $\omega_O$, $M_I$, $F_{C_I}$}
+
+\subsection{Condition}
+Input parameters:\ $\omega_O$, $M_I$, $F_{C_I}$ \\
+Unknowns:\ $\omega_I$, $v_0$
+
+
+\subsection{Basic formulas}
+From 2.214,we can get
+\begin{equation}  \label{Eq:LIIN}
+ L_{I_{in}} = \frac{EA r_I\omega_I}{v_0} - EA \ .
+\end{equation}
+By 2.211 and the relationship of $L_{I_{out}}$ and $L_{I_{in}}$ we can get
+\begin{equation}
+  \begin{aligned}
+    L_{I_{out}} -L_{I_{in}} &= [L_{I_{in}} -K]e^{-\mu^*\Phi_I} + K -L_{I_{in}} \\
+			    &= (L_{I_{in}} -K)(e^{-\mu^*\Phi_I} -1).
+  \end{aligned}
+\end{equation}
+As the longitudinal force decreases from $L_{I_{in}}$ from $L_{I_{out}}$, we choose the negative sign when using the formula 2.211.\\
+The equality of torques are
+\begin{equation}
+ M_O = r_O (L_{O_{out}} -L_{O_{in}})
+\end{equation}
+\begin{equation}
+ \begin{aligned}
+   M_I & = r_I (L_{I_{out}} - L_{I_{in}}) \\
+       & = r_I (L_{I_{in}} - K)(e^{-\mu^*\Phi_I} -1) \ . 
+ \end{aligned}
+\end{equation}
+As $L_{O_{in}} = L_{I_{out}}$ and $L_{O_{out}} = L_{I_{in}}$, we can get
+\begin{equation} \label{Eq:M_O}
+ M_O = - M_I \frac{r_O}{r_I} \ .
+\end{equation}
+And the axial equality of force on the input pulley is
+\newcommand{\ud}{\mathrm{d}}
+\begin{equation} \label{Eq:FCI}
+ \begin{aligned}
+  F_{C_I} & = \int_{\varphi_I} S^{\prime} \ud \theta \\
+          & = \int_{\varphi_I} \frac{L(EA-m^*{v_0}^2)-m^*{v_0}^2 EA}{2\tan(\delta_0)EA} \,\, \ud \theta \\
+          & = \frac{EA-m^*{v_0}^2}{2\tan(\delta_0)EA} \left[ \int_{-(\pi-\varphi)}^{\pi-\varphi-\Phi_I} L \ud \theta + \int_{\pi-\varphi-\Phi_I}^{\pi-\varphi} L \ud \theta \right] -\frac{m^*{v_0}^2(\pi-\varphi)}{\tan(\delta_0)} \\
+          & = \frac{EA-m^*{v_0}^2}{2\tan(\delta_0)EA} \left[ L_{I_{in}}(2\pi-2\varphi-\Phi_I) + \int_{\pi-\varphi-\Phi_I}^{\pi-\varphi} \left((L_{I_{in}} -K) e^{-\mu^*(\theta-(\pi-\varphi-\Phi_I))} + K \right) \ud \theta \right] - \frac{m^*{v_0}^2(\pi-\varphi)}{\tan(\delta_0)} \\
+          & = \frac{EA-m^*{v_0}^2}{2\tan(\delta_0)EA} \left[ L_{I_{in}}(2\pi-2\varphi-\Phi_I) + \left|\left((L_{I_{in}} -K) \frac{1}{-\mu^*} e^{\mu^*(\pi-\varphi-\Phi_I-\theta)} + K \theta \right)\right|_{\pi-\varphi-\Phi_I}^{\pi-\varphi} \right]- \frac{m^*{v_0}^2(\pi-\varphi)}{\tan(\delta_0)} \\
+	% & = \frac{EA-m^*{v_0}^2}{2\tan(\delta_0)EA} \left[ L_{I_{in}}(2\pi-2\varphi-\Phi_I) + (L_{I_{in}} -K) \frac{1}{-\mu^*} e^{\mu^*(-\Phi_I)} + K (\pi -\varphi) -(L_{I_{in}} -K) \frac{1}{-\mu^*} e^{\mu^*0} - K (\pi-\varphi-\Phi_I) \right]- \frac{m^*{v_0}^2(\pi-\varphi)}{\tan(\delta_0)} \\
+          & = \frac{EA-m^*{v_0}^2}{2\tan(\delta_0)EA} \left[ 2L_{I_{in}}(\pi-\varphi) + (L_{I_{in}}-K)\left( \frac{e^{-\mu^*\Phi_I}-1}{-\mu^*} -\Phi_I\right) \right] - \frac{m^*{v_0}^2(\pi-\varphi)}{\tan(\delta_0)} .
+ \end{aligned}
+\end{equation}
+
+Equation (\ref{Eq:FCI}) can be simplified the same way as (\ref{Eq:FCO_S1}). So we get
+\begin{equation}  \label{Eq:FCI_S1}
+  2F_{C_I} \tan (\delta_0)  = \left(EA-m^*{v_0}^2 \right)\left[2(\pi-\varphi) \left(\frac{r_I\omega_I}{v_0}-1 \right) + \frac{M_I}{(-\mu^*)r_IEA} - \left(\frac{r_I\omega_I}{v_0} - \frac{EA}{EA-m^*{v_0}^2}\right)\Phi_I\right]  - 2m^*{v_0}^2(\pi-\varphi)
+\end{equation}
+
+
+\subsection{How to calculate $v_0$ when $M_O = 0$}
+Condition: $\Phi_I=\Phi_O$, $F_{C_I} \not = 0$, $L_{I_{in}} \neq 0$ \\
+Insert $\Phi_O = 0$ and 2.219 in to (\ref{Eq:FCI}) and simplify it, we can get
+\begin{equation} \label{Eq:v0_2}
+ r_O\omega_O (\pi-\varphi) m^*{v_0}^2+(F_{C_I}\tan(\delta_0) + EA(\pi-\varphi) )v_0 - EA r_O\omega_O(\pi-\varphi)  = 0
+\end{equation}
+And as $v_0 \geq 0$, solving the equation (\ref{Eq:v0_2}),we can get 
+\begin{equation} \label{Eq:v0_start2}
+ v_0=\frac{\sqrt{{\left(F_{C_I}\tan(\theta_0) + EA(\pi-\varphi)\right)}^2  + 4EAm^*{r_O}^2{\omega_O}^2{(\pi-\varphi)}^2 }  - EA(\pi-\varphi) - F_{C_I} \tan(\delta_0)}{2m^*r_O\omega_O(\pi-\varphi)}
+\end{equation}
+
+
+\subsection{How to calculate $v_0$ when $M_O \not = 0$ }
+If $M_O \not = 0$, it is necessarily $\Phi_I=\Phi_O$ and $L_{O_{in}} \neq K$. So
+\begin{equation}
+ \Phi_I= - \frac{1}{\mu^*} \ln {\left[\frac{M_I}{ r_I (L_{I_{in}} - K)} + 1\right]}
+\end{equation}
+is only defined for $M_I \geq r_I(K - L_{I_{in}})$.
+With the help of Equation (\ref{Eq:M_O}), Equation (\ref{Eq:equation1_S1}) and Equation (\ref{Eq:FCI_S1}) only depend on $\omega_I$, $v_0$.They can be solved by NEWTON method
+with starting values from the $M_O = 0$ case.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  3
+\section{Input situation: $\omega_I$, $\omega_O$, $F_{C_O}$}
+
+\subsection{Condition}
+Input parameters:\ $\omega_I$, $\omega_O$, $F_{C_O}$ \\
+Unknowns:\ $M_O$, $v_0$
+
+\subsection{How to calculate $v_0$ when $M_O = 0$}
+Condition: $\Phi_I=\Phi_O$, $F_{C_O} \not = 0$, $L_{O_{in}} \neq 0$  \\
+
+If $\omega_O / \omega_I = r_I/r_O$, it means that the output torque $M_O = 0$. Then we can get $v_0$ by 2.220.
+
+\subsection{How to calculate $v_0$ when $M_O \not = 0$ }
+If $\omega_O / \omega_I \neq r_I/r_O$, it means that the output torque $M_O \neq 0$. We can solve equations (\ref{Eq:equation1_S1}) and (\ref{Eq:FCO_S1}) in unknowns $M_O$ and $v_0$.
+We can choose 2.220 as the starting value of $v_0$.
+From (\ref{Eq:equation1_S1}), we can get:
+\begin{equation}  \label{Eq:M_O_start}
+  M_O = \frac{(r_I \omega_I - r_O \omega_O)r_O E A} {v_0}.
+\end{equation}
+By inserting the starting value of $v_0$ in to (\ref{Eq:M_O_start}), we can get the starting value for $M_O$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  4
+\section{Input situation: $\omega_I$, $\omega_O$, $F_{C_I}$}
+
+\subsection{Condition}
+Input parameters:\ $\omega_I$, $\omega_O$, $F_{C_I}$ \\
+Unknowns:\ $M_I$, $v_0$
+
+\subsection{How to calculate $v_0$ when $M_O = 0$}
+Condition: $\Phi_I=\Phi_O$, $F_{C_I} \not = 0$, $L_{I_{in}} \neq 0$  \\
+
+If $\omega_O / \omega_I = r_I/r_O$, it means that the output torque $M_O = 0$. Then we can get $v_0$ by (\ref{Eq:v0_start2}).
+
+\subsection{How to calculate $v_0$ when $M_O \not = 0$ }
+If $\omega_O / \omega_I \neq r_I/r_O$, it means that the output torque $M_O \neq 0$. With the help of Equation (\ref{Eq:M_O}), (\ref{Eq:equation1_S1}) can be
+writen in the form of 
+\begin{equation}  \label{Eq:equation1_S2}
+ r_I \omega_I = -\frac{v_0 M_I}{E A r_I} + r_O \omega_O.
+\end{equation}
+
+we can solve equations (\ref{Eq:equation1_S2}) and (\ref{Eq:FCI_S1}) in unknowns $M_I$ and $v_0$. We can choose (\ref{Eq:v0_start2}) as the starting value of $v_0$.
+
+From (\ref{Eq:equation1_S2}), we can get:
+\begin{equation} \label{Eq:M_I_start}
+  M_I = - \frac{(r_I \omega_I - r_O \omega_O)r_I E A }{v_0}.
+\end{equation}
+By inserting the starting value of $v_0$ in to (\ref{Eq:M_I_start}), we can get the starting value for $M_I$.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  5
+\section{Input situation: $\omega_I$, $M_O$, $F_{C_I}$}
+
+\subsection{Condition}
+Input parameters:\ $\omega_I$, $M_O$, $F_{C_I}$ \\
+Unknowns:\ $\omega_O$, $v_0$
+
+\subsection{How to calculate $v_0$ when $M_O = 0$}
+Condition: $\Phi_I=\Phi_O$, $F_{C_I} \not = 0$, $L_{I_{in}} \neq 0$  \\
+
+If the output torque $M_O = 0$ , then we can get $v_0$ by (\ref{Eq:v0_start2}).
+
+\subsection{How to calculate $v_0$ when $M_O \not = 0$ }
+From equation (\ref{Eq:M_O}), we can get
+\begin{equation} \label{Eq:M_I}
+ M_I = - M_O \frac{r_I}{r_O} \ .
+\end{equation}
+
+If the output torque $M_O \neq 0$. With the help of Equation (\ref{Eq:M_I}), we can solve equations (\ref{Eq:equation1_S1}) and (\ref{Eq:FCI_S1}) with unknowns $\omega_O$ and $v_0$.
+We can choose (\ref{Eq:v0_start2}) as the starting value of $v_0$.
+
+From (\ref{Eq:equation1_S1}), we can get:
+\begin{equation} \label{Eq:omegaO_start}
+  \omega_O =\frac{r_I \omega_I}{r_O} - \frac{v_0 M_O}{r_I r_O E A}
+\end{equation}
+By inserting the starting value of $v_0$ in to (\ref{Eq:omegaO_start}), we can get the starting value for $\omega_O$.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  6
+\section{Input situation: $\omega_I$, $M_I$, $F_{C_O}$}
+
+\subsection{Condition}
+Input parameters:\ $\omega_I$, $M_I$, $F_{C_O}$ \\
+Unknowns:\ $\omega_O$, $v_0$
+
+\subsection{How to calculate $v_0$ when $M_O = 0$}
+Condition: $\Phi_I=\Phi_O$, $F_{C_O} \not = 0$, $L_{O_{in}} \neq 0$  \\
+
+If the input torque $M_I = 0$ ,it means that the output torque $M_O = 0$. Then we can get $v_0$ by 2.220.
+
+\subsection{How to calculate $v_0$ when $M_O \not = 0$ }
+If the input torque $M_I \neq 0$. With the help of Equation (\ref{Eq:M_O}), we can solve equations (\ref{Eq:equation1_S1}) and (\ref{Eq:FCO_S1}) in unknowns $\omega_O$ and $v_0$.
+We can choose 2.220 and (\ref{Eq:omegaO_start}) as the starting value of $v_0$ and $\omega_O$.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  6
+\section{Input situation: $\omega_I$, $M_I$, $F_{C_I}$}
+
+\subsection{Condition}
+Input parameters:\ $\omega_I$, $M_I$, $F_{C_I}$ \\
+Unknowns:\ $\omega_O$, $v_0$
+
+\subsection{How to calculate $v_0$ when $M_O = 0$}
+Condition: $\Phi_I=\Phi_O$, $F_{C_I} \not = 0$, $L_{I_{in}} \neq 0$  \\
+
+If the input torque $M_I = 0$ , it means that the output torque $M_O = 0$. Then we can get $v_0$ by (\ref{Eq:v0_start2}).
+
+\subsection{How to calculate $v_0$ when $M_O \not = 0$ }
+If the input torque $M_I \neq 0$. it means that the output torque $M_O \neq 0$. We can solve equations (\ref{Eq:equation1_S2}) and (\ref{Eq:FCI_S1}) with unknowns $\omega_O$ and $v_0$.
+We can choose (\ref{Eq:v0_start2}) and (\ref{Eq:omegaO_start}) as the starting value of $v_0$ and $\omega_O$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\newpage
+\appendix
+\section{Futher Simplifiction}
+
+\subsection{$\Phi_O$}
+Insert (\ref{Eq:M_O_start}) and (\ref{2.218}) in to 2.221, we can get
+\begin{equation} \label{Eq:PhiO_simpliction}
+  \begin{aligned}
+  \Phi_O  &= \frac{1}{\mu^*} \ln {\left[\frac{\frac{(r_I\omega_I-r_O\omega_O)r_OEA}{v_0}}{r_OEA(\frac{r_O\omega_O}{v_0}-\frac{EA}{EA-m^*{v_0}^2})} + 1\right]}
+	  &= \frac{1}{\mu^*} \ln {\left[\frac{r_I\omega_I(EA-m^*{v_0}^2)-EAv_0}{r_O\omega_O(EA-m^*{v_0}^2)-EAv_0}\right]}
+  \end{aligned}
+\end{equation}
+
+
+
+\subsection{$F_{C_O}$}
+Insert (\ref{Eq:M_O_start}) and (\ref{Eq:PhiO_simpliction}) in to (\ref{Eq:FCO_S1}), we can get
+\begin{equation}  \label{Eq:FCO_S2}
+  \begin{split}
+   2F_{C_O} \tan (\delta_0) =\left(EA-m^*{v_0}^2 \right)  \Bigg[& 2\varphi \left(\frac{r_O\omega_O}{v_0}-1 \right) + \frac{r_I\omega_I-r_O\omega_O}{\mu^*v_0}  \\
+							 &  - \left(\frac{r_O\omega_O}{v_0} - \frac{EA}{EA-m^*{v_0}^2}\right)\frac{1}{\mu^*}\ln {\left[\frac{r_I\omega_I(EA-m^*{v_0}^2)-EAv_0}{r_O\omega_O(EA-m^*{v_0}^2)-EAv_0}\right]}\Bigg]  - 2m^*{v_0}^2\varphi
+   \end{split}
+ \end{equation}
+
+
+
+\subsection{$\Phi_I$}
+From (\ref{Eq:LIIN}) and the formula of K we can get 
+ \begin{equation}  \label{LIIN-K}
+  \left(L_{O_{in}} - K \right)  = \frac{r_I \omega_I}{v_0}  - \frac{EA}{EA-m^{*}{v_0}^2} EA
+ \end{equation}
+
+Insert (\ref{Eq:M_I_start}) and (\ref{Eq:LIIN-K}) in to 2.221, we can get
+\begin{equation} \label{Eq:PhiI_simpliction}
+  \begin{aligned}
+  \Phi_I  &= \frac{1}{-\mu^*} \ln {\left[-\frac{\frac{(r_I\omega_I-r_O\omega_O)r_I EA}{v_0}}{r_I EA(\frac{r_I\omega_I}{v_0}-\frac{EA}{EA-m^*{v_0}^2})} + 1\right]}
+	  &= \frac{1}{-\mu^*} \ln {\left[\frac{r_O\omega_O(EA-m^*{v_0}^2)-EAv_0}{r_I\omega_I(EA-m^*{v_0}^2)-EAv_0}\right]}
+  \end{aligned}
+\end{equation}
+
+
+\subsection{$F_{C_I}$}
+Insert (\ref{Eq:M_I_start}) and \ref{Eq:PhiI_simpliction} in to (\ref{Eq:FCI_S1}), we can get
+\begin{equation} \label{Eq:FCI_S2}
+  \begin{split}
+    2F_{C_I} \tan (\delta_0)  = \left(EA-m^*{v_0}^2 \right)  \Bigg[& 2(\pi-\varphi) \left(\frac{r_I\omega_I}{v_0}-1 \right) + \frac{r_O\omega_O-r_I\omega_I}{-\mu^*v_0} \\ 
+                                                            &  -\left(\frac{r_I\omega_I}{v_0} - \frac{EA}{EA-m^*{v_0}^2}\right)\frac{1}{-\mu^*} \ln {\left[\frac{r_O\omega_O(EA-m^*{v_0}^2)-EAv_0}{r_I\omega_I(EA-m^*{v_0}^2)-EAv_0}\right]}\Bigg]  - 2m^*{v_0}^2(\pi-\varphi)
+  \end{split}
+\end{equation}
+
+
+
+
+\end{document}
